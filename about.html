@@ -1,1 +1,684 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - America Party News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --patriot-red: #B31942;
+            --patriot-blue: #0A3161;
+            --patriot-white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--patriot-white);
+        }
+        
+        /* Header with Flag Stripes */
+        .header {
+            background: linear-gradient(
+                to right,
+                var(--patriot-red) 0%,
+                var(--patriot-red) 7.69%,
+                var(--patriot-white) 7.69%,
+                var(--patriot-white) 15.38%,
+                var(--patriot-red) 15.38%,
+                var(--patriot-red) 23.07%,
+                var(--patriot-white) 23.07%,
+                var(--patriot-white) 30.76%,
+                var(--patriot-red) 30.76%,
+                var(--patriot-red) 38.45%,
+                var(--patriot-white) 38.45%,
+                var(--patriot-white) 46.14%,
+                var(--patriot-red) 46.14%,
+                var(--patriot-red) 53.83%,
+                var(--patriot-white) 53.83%,
+                var(--patriot-white) 61.52%,
+                var(--patriot-red) 61.52%,
+                var(--patriot-red) 69.21%,
+                var(--patriot-white) 69.21%,
+                var(--patriot-white) 76.9%,
+                var(--patriot-red) 76.9%,
+                var(--patriot-red) 84.59%,
+                var(--patriot-white) 84.59%,
+                var(--patriot-white) 92.28%,
+                var(--patriot-red) 92.28%,
+                var(--patriot-red) 100%
+            );
+            height: 8px;
+        }
+        
+        .navbar {
+            background-color: var(--patriot-blue);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--patriot-white);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--patriot-white);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--light-gray);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--patriot-blue), var(--patriot-red));
+            color: var(--patriot-white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--patriot-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--patriot-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .content-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            border-left: 4px solid var(--patriot-red);
+        }
+        
+        .content-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .content-card p {
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .content-card li:before {
+            content: "★";
+            color: var(--patriot-red);
+            margin-right: 0.5rem;
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .team-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, var(--patriot-blue), var(--patriot-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--patriot-white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        
+        .team-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .team-title {
+            color: var(--patriot-red);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .team-bio {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--patriot-blue);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+        
+        .timeline-content {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .timeline-date {
+            background: var(--patriot-red);
+            color: var(--patriot-white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: var(--dark-gray);
+        }
+        
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .value-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            text-align: center;
+            border-top: 4px solid var(--patriot-red);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--patriot-blue);
+        }
+        
+        .value-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .value-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--patriot-blue);
+            color: var(--patriot-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-details h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-details p {
+            color: var(--dark-gray);
+            margin: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--patriot-blue);
+            color: var(--patriot-white);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 60px !important;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 60px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Flag Stripes -->
+    <div class="header"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">America Party News</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#news">Breaking News</a></li>
+                <li><a href="#policy">Policy</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#opinion">Opinion</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>About America Party News</h1>
+        <p>Your trusted source for independent journalism covering the America Party movement and the future of American politics</p>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Mission & Vision -->
+        <section class="content-section">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎯 Our Mission</h3>
+                    <p>America Party News is dedicated to providing accurate, unbiased coverage of the America Party movement and its impact on American politics. We believe in the power of informed citizens to shape the future of our nation.</p>
+                    <p>Our commitment extends beyond traditional reporting to include in-depth analysis, expert commentary, and comprehensive coverage of policy developments that matter to Americans.</p>
+                </div>
+                <div class="content-card">
+                    <h3>🔮 Our Vision</h3>
+                    <p>We envision a future where American politics is driven by innovation, transparency, and the genuine needs of the people. Through our coverage, we aim to bridge the gap between political movements and citizens.</p>
+                    <p>Our vision includes fostering meaningful dialogue about the role of technology, entrepreneurship, and individual liberty in shaping America's future.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Values -->
+        <section class="content-section">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">📰</div>
+                    <h3 class="value-title">Editorial Independence</h3>
+                    <p class="value-description">We maintain complete editorial independence, ensuring our coverage is free from external influence and bias.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">✅</div>
+                    <h3 class="value-title">Accuracy First</h3>
+                    <p class="value-description">Every story is fact-checked and verified through multiple sources before publication.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌐</div>
+                    <h3 class="value-title">Transparency</h3>
+                    <p class="value-description">We believe in open journalism, clearly identifying sources and acknowledging when information is limited.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🇺🇸</div>
+                    <h3 class="value-title">American Values</h3>
+                    <p class="value-description">We uphold the principles of freedom, democracy, and individual liberty that define America.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Our Story -->
+        <section class="content-section">
+            <h2 class="section-title">Our Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2025</div>
+                        <h3 class="timeline-title">America Party News Founded</h3>
+                        <p class="timeline-description">Launched as an independent news platform dedicated to covering the emerging America Party movement with integrity and depth.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2025</div>
+                        <h3 class="timeline-title">First Breaking News Coverage</h3>
+                        <p class="timeline-description">Provided exclusive coverage of the America Party's official announcement and policy platform release.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2025</div>
+                        <h3 class="timeline-title">Expert Analysis Network</h3>
+                        <p class="timeline-description">Established partnerships with leading political analysts and policy experts to provide comprehensive coverage.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2025</div>
+                        <h3 class="timeline-title">Growing Readership</h3>
+                        <p class="timeline-description">Reached over 100,000 monthly readers, becoming a trusted source for America Party news and analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Editorial Team -->
+        <section class="content-section">
+            <h2 class="section-title">Our Editorial Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">MR</div>
+                    <h3 class="team-name">Michael Rodriguez</h3>
+                    <p class="team-title">Editor-in-Chief</p>
+                    <p class="team-bio">Award-winning journalist with 15 years of experience in political reporting. Former correspondent for major networks, specializing in emerging political movements.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">SW</div>
+                    <h3 class="team-name">Sarah Wilson</h3>
+                    <p class="team-title">Senior Political Analyst</p>
+                    <p class="team-bio">Political science PhD with expertise in American political systems. Author of three books on contemporary political movements and electoral trends.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">JC</div>
+                    <h3 class="team-name">James Chen</h3>
+                    <p class="team-title">Technology Reporter</p>
+                    <p class="team-bio">Covers the intersection of technology and politics. Former Silicon Valley reporter with deep understanding of innovation policy and digital governance.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AL</div>
+                    <h3 class="team-name">Amanda Lee</h3>
+                    <p class="team-title">Fact-Check Editor</p>
+                    <p class="team-bio">Ensures accuracy and credibility of all published content. Graduate of Columbia Journalism School with specialization in investigative reporting.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Information -->
+        <section class="content-section">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 class="section-subtitle">Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@americapartynews.xyz</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>1-800-AMERICA (1-800-263-7422)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>1776 Liberty Ave, Suite 2025<br>Austin, TX 78701</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>Website</h4>
+                            <p>americapartynews.xyz</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3 class="section-subtitle">Editorial Guidelines</h3>
+                    <div class="content-card">
+                        <h3>Tips & News Submissions</h3>
+                        <ul>
+                            <li>Breaking news tips: tips@americapartynews.xyz</li>
+                            <li>Policy analysis submissions: policy@americapartynews.xyz</li>
+                            <li>Op-ed submissions: opinion@americapartynews.xyz</li>
+                            <li>Event coverage requests: events@americapartynews.xyz</li>
+                            <li>Press releases: press@americapartynews.xyz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="index.html" style="color: var(--patriot-white); text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Breaking News</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Policy Platform</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Events</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Media Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Connect</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">🐦 Twitter/X</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">📘 Facebook</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">📸 Instagram</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">💼 LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
+                    <p>📧 info@americapartynews.xyz</p>
+                    <p>📞 1-800-AMERICA</p>
+                    <p>📍 Austin, TX</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+                <p>&copy; 2025 America Party News. All rights reserved. | americapartynews.xyz</p>
+                <p>Dedicated to bringing you the latest news and updates from the America Party movement.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
