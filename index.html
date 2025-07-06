@@ -1,1 +1,810 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Party News - Latest Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --patriot-red: #B31942;
+            --patriot-blue: #0A3161;
+            --patriot-white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--patriot-white);
+        }
+        
+        /* Header with Flag Stripes */
+        .header {
+            background: linear-gradient(
+                to right,
+                var(--patriot-red) 0%,
+                var(--patriot-red) 7.69%,
+                var(--patriot-white) 7.69%,
+                var(--patriot-white) 15.38%,
+                var(--patriot-red) 15.38%,
+                var(--patriot-red) 23.07%,
+                var(--patriot-white) 23.07%,
+                var(--patriot-white) 30.76%,
+                var(--patriot-red) 30.76%,
+                var(--patriot-red) 38.45%,
+                var(--patriot-white) 38.45%,
+                var(--patriot-white) 46.14%,
+                var(--patriot-red) 46.14%,
+                var(--patriot-red) 53.83%,
+                var(--patriot-white) 53.83%,
+                var(--patriot-white) 61.52%,
+                var(--patriot-red) 61.52%,
+                var(--patriot-red) 69.21%,
+                var(--patriot-white) 69.21%,
+                var(--patriot-white) 76.9%,
+                var(--patriot-red) 76.9%,
+                var(--patriot-red) 84.59%,
+                var(--patriot-white) 84.59%,
+                var(--patriot-white) 92.28%,
+                var(--patriot-red) 92.28%,
+                var(--patriot-red) 100%
+            );
+            height: 8px;
+        }
+        
+        .navbar {
+            background-color: var(--patriot-blue);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--patriot-white);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--patriot-white);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light-gray);
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--patriot-blue), var(--patriot-red));
+            color: var(--patriot-white);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* News Section */
+        .news-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .news-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--patriot-blue);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .news-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .news-excerpt {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--patriot-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--patriot-blue);
+        }
+        
+        /* Social Media Section */
+        .social-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .social-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--patriot-red);
+        }
+        
+        .social-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .social-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: var(--patriot-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--patriot-white);
+            font-weight: 600;
+        }
+        
+        .social-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.2rem;
+        }
+        
+        .social-handle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .social-content {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .social-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Breaking News Banner */
+        .breaking-news {
+            background: linear-gradient(45deg, var(--patriot-red), #d32f2f);
+            color: var(--patriot-white);
+            padding: 0.8rem 0;
+            text-align: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .breaking-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            background: var(--patriot-white);
+            border: 2px solid var(--patriot-blue);
+            color: var(--patriot-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--patriot-blue);
+            color: var(--patriot-white);
+        }
+        
+        /* Policy Section */
+        .policy-highlight {
+            background: linear-gradient(135deg, var(--patriot-blue), var(--patriot-red));
+            color: var(--patriot-white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .policy-highlight h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .policy-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .policy-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .policy-list li:before {
+            content: "★";
+            color: var(--patriot-white);
+            margin-right: 0.5rem;
+        }
+        
+        /* Events Section */
+        .event-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--patriot-red);
+        }
+        
+        .event-date {
+            background: var(--patriot-blue);
+            color: var(--patriot-white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .event-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Opinion Section */
+        .opinion-card {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--patriot-red);
+        }
+        
+        .opinion-author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: var(--patriot-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--patriot-white);
+            font-weight: 600;
+        }
+        
+        .author-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-title {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--patriot-red);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--patriot-blue);
+            font-weight: 600;
+        }
+        
+        /* Video Section */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-card {
+            background: var(--patriot-white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, var(--patriot-blue), var(--patriot-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--patriot-white);
+            font-size: 3rem;
+        }
+        
+        .video-info {
+            padding: 1rem;
+        }
+        
+        .video-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--patriot-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .footer {
+            background-color: var(--patriot-blue);
+            color: var(--patriot-white);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .news-section h2,
+            .social-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .social-section {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Flag Stripes -->
+    <div class="header"></div>
+    
+    <!-- Breaking News Banner -->
+    <div class="breaking-news">
+        <span class="breaking-text">🚨 BREAKING:</span> America Party Registers in 12 States - Membership Surges Past 100,000!
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">America Party News</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">Breaking News</a></li>
+                <li><a href="#policy">Policy</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#opinion">Opinion</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">America Party News</h1>
+        <p class="hero-subtitle">Your trusted source for the latest updates on America's political future</p>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- News Section -->
+        <section class="news-section">
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <a href="#" class="tab-btn active">All News</a>
+                <a href="#" class="tab-btn">Breaking</a>
+                <a href="#" class="tab-btn">Policy</a>
+                <a href="#" class="tab-btn">Events</a>
+                <a href="#" class="tab-btn">Analysis</a>
+            </div>
+            
+            <h2>Latest News</h2>
+            
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x200/0A3161/FFFFFF?text=America+Party+Launch" alt="America Party Launch">
+                <div class="news-content">
+                    <h3 class="news-title">Elon Musk Announces Formation of America Party</h3>
+                    <div class="news-meta">January 15, 2025 | Political News</div>
+                    <p class="news-excerpt">In a groundbreaking announcement, tech entrepreneur Elon Musk has officially launched the America Party, positioning it as a new political movement focused on innovation, freedom, and American values...</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x200/B31942/FFFFFF?text=Policy+Platform" alt="Policy Platform">
+                <div class="news-content">
+                    <h3 class="news-title">America Party Unveils Comprehensive Policy Platform</h3>
+                    <div class="news-meta">January 12, 2025 | Policy</div>
+                    <p class="news-excerpt">The newly formed America Party has released its detailed policy platform, emphasizing technological advancement, economic freedom, and government efficiency...</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="news-card">
+                <img src="https://via.placeholder.com/400x200/0A3161/FFFFFF?text=Grassroots+Movement" alt="Grassroots Movement">
+                <div class="news-content">
+                    <h3 class="news-title">Grassroots Support Grows for America Party Movement</h3>
+                    <div class="news-meta">January 10, 2025 | Community</div>
+                    <p class="news-excerpt">Citizens across the nation are rallying behind the America Party's vision, with local chapters forming in key states and volunteer registrations surging...</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+            
+            <!-- Policy Highlight Section -->
+            <div class="policy-highlight">
+                <h3>🇺🇸 America Party Core Principles</h3>
+                <ul class="policy-list">
+                    <li>Technological Innovation & Space Exploration</li>
+                    <li>Government Efficiency & Transparency</li>
+                    <li>Economic Freedom & Entrepreneurship</li>
+                    <li>Constitutional Rights & Individual Liberty</li>
+                    <li>Clean Energy & Environmental Solutions</li>
+                </ul>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">States Registered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Local Chapters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.5M</div>
+                    <div class="stat-label">Social Followers</div>
+                </div>
+            </div>
+            
+            <!-- Events Section -->
+            <h2>Upcoming Events</h2>
+            <div class="event-card">
+                <div class="event-date">Jan 25, 2025</div>
+                <h3 class="event-title">America Party National Convention</h3>
+                <p>Join us in Austin, Texas for the first-ever America Party National Convention. Network with fellow patriots and help shape our movement's future.</p>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-date">Feb 10, 2025</div>
+                <h3 class="event-title">Innovation Summit 2025</h3>
+                <p>Explore how technology can transform governance and create opportunities for all Americans. Featured speakers include tech leaders and policy experts.</p>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-date">Feb 22, 2025</div>
+                <h3 class="event-title">Town Hall Series - California</h3>
+                <p>Meet with America Party representatives in Los Angeles, San Francisco, and San Diego for open discussions on local issues and national policy.</p>
+            </div>
+            
+            <!-- Opinion Section -->
+            <h2>Expert Analysis</h2>
+            <div class="opinion-card">
+                <div class="opinion-author">
+                    <div class="author-avatar">JS</div>
+                    <div class="author-info">
+                        <h4>John Smith</h4>
+                        <div class="author-title">Political Analyst</div>
+                    </div>
+                </div>
+                <h3>Why the America Party Represents a Political Paradigm Shift</h3>
+                <p>The emergence of the America Party signals a fundamental change in American politics, moving beyond traditional left-right divides to focus on practical solutions and technological innovation...</p>
+            </div>
+            
+            <div class="opinion-card">
+                <div class="opinion-author">
+                    <div class="author-avatar">MJ</div>
+                    <div class="author-info">
+                        <h4>Maria Johnson</h4>
+                        <div class="author-title">Economic Policy Expert</div>
+                    </div>
+                </div>
+                <h3>Economic Implications of America Party Policies</h3>
+                <p>The America Party's focus on innovation and entrepreneurship could reshape economic policy, potentially creating new opportunities for growth while addressing inequality...</p>
+            </div>
+        </section>
+        
+        <!-- Media & Social Section -->
+        <aside class="social-section">
+            <h2>Latest Updates</h2>
+            
+            <div class="social-card">
+                <div class="social-header">
+                    <div class="social-avatar">EM</div>
+                    <div class="social-info">
+                        <h3>Elon Musk</h3>
+                        <div class="social-handle">@elonmusk</div>
+                    </div>
+                </div>
+                <div class="social-content">
+                    "The America Party represents a new chapter in American politics - one where innovation meets tradition, and where the best of our nation's values guide us toward a brighter future. Join us! 🇺🇸"
+                </div>
+                <div class="social-time">2 hours ago</div>
+            </div>
+            
+            <div class="social-card">
+                <div class="social-header">
+                    <div class="social-avatar">AP</div>
+                    <div class="social-info">
+                        <h3>America Party</h3>
+                        <div class="social-handle">@AmericaParty</div>
+                    </div>
+                </div>
+                <div class="social-content">
+                    "Every great movement starts with a single step. Today, we take that step together. The America Party is officially launched and ready to serve the American people. #AmericaParty #Innovation #Freedom"
+                </div>
+                <div class="social-time">5 hours ago</div>
+            </div>
+            
+            <div class="social-card">
+                <div class="social-header">
+                    <div class="social-avatar">EM</div>
+                    <div class="social-info">
+                        <h3>Elon Musk</h3>
+                        <div class="social-handle">@elonmusk</div>
+                    </div>
+                </div>
+                <div class="social-content">
+                    "Politics doesn't have to be about division. The America Party is about uniting Americans around our shared values of freedom, innovation, and opportunity for all. Let's build something amazing together."
+                </div>
+                <div class="social-time">1 day ago</div>
+            </div>
+            
+            <div class="social-card">
+                <div class="social-header">
+                    <div class="social-avatar">AP</div>
+                    <div class="social-info">
+                        <h3>America Party</h3>
+                        <div class="social-handle">@AmericaParty</div>
+                    </div>
+                </div>
+                <div class="social-content">
+                    "Our platform is simple: empower Americans to innovate, create, and prosper. We believe in limited government, maximum freedom, and unlimited potential. Welcome to the America Party."
+                </div>
+                <div class="social-time">2 days ago</div>
+            </div>
+            
+            <!-- Video Section -->
+            <h2>Featured Videos</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">▶️</div>
+                    <div class="video-info">
+                        <h3 class="video-title">Elon Musk Explains America Party Vision</h3>
+                        <div class="video-duration">12:34</div>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">▶️</div>
+                    <div class="video-info">
+                        <h3 class="video-title">America Party Policy Platform Deep Dive</h3>
+                        <div class="video-duration">8:22</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newsletter Signup -->
+            <div class="policy-highlight">
+                <h3>📧 Stay Updated</h3>
+                <p>Get the latest America Party news delivered to your inbox</p>
+                <div style="margin-top: 1rem;">
+                    <input type="email" placeholder="Enter your email" style="padding: 0.5rem; border: none; border-radius: 4px; margin-right: 0.5rem; width: 200px;">
+                    <button style="padding: 0.5rem 1rem; background: var(--patriot-red); color: white; border: none; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Breaking News</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Policy Platform</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Events</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">Media Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Connect</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">🐦 Twitter/X</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">📘 Facebook</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">📸 Instagram</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--patriot-white); text-decoration: none;">💼 LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
+                    <p>📧 info@americapartynews.xyz</p>
+                    <p>📞 1-800-AMERICA</p>
+                    <p>📍 Austin, TX</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+                <p>&copy; 2025 America Party News. All rights reserved. | americapartynews.xyz</p>
+                <p>Dedicated to bringing you the latest news and updates from the America Party movement.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
