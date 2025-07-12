@@ -1,1 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Party - Recent Events & Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .live-banner {
+            background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #dc2626 100%);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background-size: 100% 100%; }
+            50% { background-size: 110% 100%; }
+            100% { background-size: 100% 100%; }
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .events-hero {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .events-hero h2 {
+            color: #1e3a8a;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #dc2626, #3b82f6);
+            border-radius: 2px;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-event:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .event-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .timeline-event:nth-child(odd) .event-content {
+            margin-right: 10%;
+        }
+
+        .timeline-event:nth-child(even) .event-content {
+            margin-left: 10%;
+        }
+
+        .event-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #dc2626;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+            z-index: 10;
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .event-description {
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .event-type {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .event-type.major {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .event-type.filing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .event-type.social {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .event-type.reaction {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .upcoming-events {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .upcoming-events h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upcoming-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .upcoming-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .upcoming-item h3 {
+            margin-bottom: 10px;
+            color: #fbbf24;
+        }
+
+        .key-metrics {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .key-metrics h2 {
+            color: #1e3a8a;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-event {
+                flex-direction: column !important;
+                align-items: flex-start;
+            }
+            
+            .event-content {
+                width: 100% !important;
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .event-marker {
+                left: 30px !important;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🇺🇸 AMERICA PARTY</h1>
+        <p>Recent Events & Timeline</p>
+    </header>
+
+    <div class="live-banner">
+        🔴 LIVE UPDATES: America Party Formation in Progress - Follow the Latest Developments
+    </div>
+
+    <div class="main-content">
+        <div class="events-hero">
+            <h2>Key Events Timeline</h2>
+            <p>Track the formation and early activities of the America Party from inception to current developments. This timeline covers major milestones, official filings, and significant reactions from political figures.</p>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Days Since Formation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1.25M</div>
+                <div class="stat-label">Poll Respondents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">65%</div>
+                <div class="stat-label">Support in Poll</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">FEC Filings</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 12, 2025</div>
+                    <div class="event-type reaction">Analysis</div>
+                    <h3 class="event-title">Coalition Analysis Published</h3>
+                    <p class="event-description">
+                        Major political analysts examine potential voter coalition for America Party, questioning who would support an "anti-spending, anti-Trump, anti-Democrats, anti-Republicans" political movement.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 11, 2025</div>
+                    <div class="event-type reaction">Political Response</div>
+                    <h3 class="event-title">Trump Coalition Fracture Analysis</h3>
+                    <p class="event-description">
+                        CNN publishes analysis suggesting Trump's coalition is starting to fracture, with Trump now treating former ally Elon Musk like an "off the rails" oddity after the America Party announcement.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 10, 2025</div>
+                    <div class="event-type social">Media Coverage</div>
+                    <h3 class="event-title">Third Party Viability Questioned</h3>
+                    <p class="event-description">
+                        Political experts and media outlets begin questioning Musk's ability to launch a viable third party, citing challenges with coherent ideology and attention span required for political organization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 9, 2025</div>
+                    <div class="event-type social">Social Media</div>
+                    <h3 class="event-title">Epstein Post Controversy</h3>
+                    <p class="event-description">
+                        Musk continues feud with Trump by posting controversial content about Jeffrey Epstein case, questioning why no additional arrests have been made. Post appears to target Trump administration.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 8, 2025</div>
+                    <div class="event-type reaction">Political Response</div>
+                    <h3 class="event-title">Treasury Secretary Comments</h3>
+                    <p class="event-description">
+                        Treasury Secretary Scott Bessent publicly states that company boards likely disapprove of Musk's political activities and will encourage him to focus on business rather than politics.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 7, 2025</div>
+                    <div class="event-type reaction">Trump Response</div>
+                    <h3 class="event-title">Trump Calls Musk "Train Wreck"</h3>
+                    <p class="event-description">
+                        President Trump posts on Truth Social expressing sadness at watching Elon Musk go "completely off the rails," calling him a "TRAIN WRECK" and marking the complete breakdown of their relationship.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 6, 2025</div>
+                    <div class="event-type filing">Official Filing</div>
+                    <h3 class="event-title">FEC Registration Filed</h3>
+                    <p class="event-description">
+                        Official FEC records confirm Musk filed paperwork establishing the "America Party" (AMEP) under Committee ID #C00910323. Tesla CFO Vaibhav Taneja serves as both Custodian of Records and Treasurer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 5, 2025</div>
+                    <div class="event-type major">Party Formation</div>
+                    <h3 class="event-title">America Party Officially Announced</h3>
+                    <p class="event-description">
+                        Elon Musk officially announces formation of the "America Party" on X, following through on his threat after Trump's spending bill passed. Declares intent to "give Americans their freedom back" and challenge the "one-party system."
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 4, 2025</div>
+                    <div class="event-type social">X Poll</div>
+                    <h3 class="event-title">Independence Day Poll</h3>
+                    <p class="event-description">
+                        Musk posts poll on X asking "Is it time to create a new political party in America?" Poll receives 1.25 million responses with 65% supporting creation of new party. Poll open to users worldwide.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">July 3, 2025</div>
+                    <div class="event-type major">Spending Bill Feud</div>
+                    <h3 class="event-title">Trump's "Big Beautiful Bill" Passes</h3>
+                    <p class="event-description">
+                        Trump's massive tax and spending legislation passes Congress despite Musk's vocal opposition. Musk had called the bill a "disgusting abomination" and threatened to form new party if it passed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-event">
+                <div class="event-marker"></div>
+                <div class="event-content">
+                    <div class="event-date">Early July 2025</div>
+                    <div class="event-type major">Initial Threat</div>
+                    <h3 class="event-title">First Party Formation Threat</h3>
+                    <p class="event-description">
+                        Musk first threatens to form "America Party" if Trump's spending bill passes, citing concerns about "crushingly unsustainable debt" and calling the legislation an affront to fiscal responsibility.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="upcoming-events">
+            <h2>Upcoming Activities & Watch Items</h2>
+            <div class="upcoming-list">
+                <div class="upcoming-item">
+                    <h3>🗳️ Ballot Access Efforts</h3>
+                    <p>State-by-state ballot access applications expected to begin for 2026 midterm elections in target districts</p>
+                </div>
+                <div class="upcoming-item">
+                    <h3>💰 Fundraising Organization</h3>
+                    <p>Formal fundraising structure and donor outreach anticipated as party organization develops</p>
+                </div>
+                <div class="upcoming-item">
+                    <h3>📋 Platform Development</h3>
+                    <p>Detailed policy platform and candidate recruitment for 2-3 Senate seats and 8-10 House districts</p>
+                </div>
+                <div class="upcoming-item">
+                    <h3>🏛️ State Registration</h3>
+                    <p>Additional state-level political party registrations required for ballot access across target states</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-metrics">
+            <h2>Key Metrics & Impact</h2>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-icon">📊</div>
+                    <h3>Poll Results</h3>
+                    <p>65% of 1.25M respondents supported new party formation in July 4 poll</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon">🎯</div>
+                    <h3>Electoral Strategy</h3>
+                    <p>Focused approach on 2-3 Senate seats and 8-10 House districts rather than national campaign</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon">💸</div>
+                    <h3>Financial Impact</h3>
+                    <p>Potential loss of $100M+ in Musk donations to Trump organizations</p>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon">📈</div>
+                    <h3>Market Response</h3>
+                    <p>Tesla stock and Musk's other ventures affected by political tensions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 America Party Events Timeline. All rights reserved.</p>
+        <p>🇺🇸 Stay Updated with the Latest Political Developments 🇺🇸</p>
+    </footer>
+</body>
+</html>
