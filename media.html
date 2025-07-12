@@ -1,1 +1,694 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmericaPartyNews - Media Channel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .brand-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .header .media-tagline {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fbbf24;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-bar {
+            background-color: #1e40af;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #1e40af, #dc2626);
+        }
+
+        .section-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #dc2626;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .media-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1e40af, #dc2626);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .media-icon {
+            font-size: 3rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .media-type-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .media-source {
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .media-date {
+            background-color: #f3f4f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .media-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: #1f2937;
+            line-height: 1.3;
+        }
+
+        .media-description {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .media-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .media-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .media-link {
+            background: linear-gradient(45deg, #1e40af, #dc2626);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .media-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .share-btn {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .share-btn:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .featured-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .featured-media {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .featured-thumbnail {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1e40af, #dc2626);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .featured-thumbnail .media-icon {
+            font-size: 4rem;
+        }
+
+        .featured-content h3 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .featured-content p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #dc2626;
+            padding-bottom: 0.5rem;
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .playlist-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .playlist-thumbnail {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #1e40af, #dc2626);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .playlist-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: #1f2937;
+        }
+
+        .playlist-info p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-media {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .media-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>AmericaPartyNews</h1>
+            <p class="brand-subtitle">Independent Political Coverage & Analysis</p>
+            <p class="media-tagline">📺 Media Channel</p>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#news">News</a>
+                <a href="#opinion">Opinion</a>
+                <a href="#media" class="active">Media</a>
+                <a href="#analysis">Analysis</a>
+                <a href="#live">Live</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Media Coverage</h2>
+            <p>Video interviews, podcasts, and multimedia content covering America Party developments</p>
+        </div>
+
+        <div class="featured-section">
+            <div class="featured-media">
+                <div class="featured-thumbnail">
+                    <div class="media-type-badge">EXCLUSIVE</div>
+                    <div class="media-icon">🎥</div>
+                </div>
+                <div class="featured-content">
+                    <h3>Exclusive: Political Analysts Discuss America Party Impact</h3>
+                    <p>A comprehensive 45-minute discussion with leading political scientists analyzing the formation of the America Party and its potential impact on the 2026 midterm elections.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👀</span>
+                            <span>2.3M views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>45 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>📅</span>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
+                    <a href="#" class="media-link">Watch Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-grid">
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">PODCAST</div>
+                    <div class="media-icon">🎙️</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">Political Pulse Podcast</span>
+                        <span class="media-date">1 day ago</span>
+                    </div>
+                    <h3 class="media-title">The Trump-Musk Split: What It Means for American Politics</h3>
+                    <p class="media-description">Deep dive into the personal and political factors that led to the breakdown between President Trump and Elon Musk, and how this affects the broader political landscape.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👂</span>
+                            <span>845K listens</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>32 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⭐</span>
+                            <span>4.8/5</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">Listen Now</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">INTERVIEW</div>
+                    <div class="media-icon">🎤</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">NewsNation</span>
+                        <span class="media-date">12 hours ago</span>
+                    </div>
+                    <h3 class="media-title">Former GOP Strategist on Third Party Challenges</h3>
+                    <p class="media-description">Veteran Republican strategist discusses the historical challenges facing third parties and whether the America Party can overcome traditional barriers to success.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👀</span>
+                            <span>1.2M views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>18 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>💬</span>
+                            <span>3.4K comments</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">Watch Interview</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">DOCUMENTARY</div>
+                    <div class="media-icon">📽️</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">Independent Media</span>
+                        <span class="media-date">3 days ago</span>
+                    </div>
+                    <h3 class="media-title">The Rise and Fall of Tech Billionaire Politics</h3>
+                    <p class="media-description">A comprehensive documentary exploring how tech entrepreneurs have attempted to influence politics, from Ross Perot to Michael Bloomberg to Elon Musk.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👀</span>
+                            <span>3.7M views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>78 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>🏆</span>
+                            <span>Award Winner</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">Watch Documentary</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">LIVE STREAM</div>
+                    <div class="media-icon">📡</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">AmericaPartyNews Live</span>
+                        <span class="media-date">Tomorrow 8PM ET</span>
+                    </div>
+                    <h3 class="media-title">Live Town Hall: America Party Q&A</h3>
+                    <p class="media-description">Join us for a live town hall where political experts answer viewer questions about the America Party, its policies, and potential impact on upcoming elections.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>📅</span>
+                            <span>Scheduled</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>90 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>🔔</span>
+                            <span>12K reminders</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">Set Reminder</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">ANALYSIS</div>
+                    <div class="media-icon">📊</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">Data & Politics</span>
+                        <span class="media-date">4 days ago</span>
+                    </div>
+                    <h3 class="media-title">Polling Data: America Party's Early Numbers</h3>
+                    <p class="media-description">Visual analysis of early polling data showing potential support for the America Party across different demographics and swing states.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👀</span>
+                            <span>892K views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>25 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>📈</span>
+                            <span>Trending</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">View Analysis</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="media-thumbnail">
+                    <div class="media-type-badge">DEBATE</div>
+                    <div class="media-icon">⚖️</div>
+                </div>
+                <div class="media-content">
+                    <div class="media-meta">
+                        <span class="media-source">Political Crossfire</span>
+                        <span class="media-date">5 days ago</span>
+                    </div>
+                    <h3 class="media-title">Debate: Is America Ready for a Third Party?</h3>
+                    <p class="media-description">Heated debate between political commentators from different perspectives on whether the America Party represents genuine political change or just another distraction.</p>
+                    <div class="media-stats">
+                        <div class="stat-item">
+                            <span>👀</span>
+                            <span>2.1M views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>⏱️</span>
+                            <span>52 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>💬</span>
+                            <span>8.2K comments</span>
+                        </div>
+                    </div>
+                    <div class="media-actions">
+                        <a href="#" class="media-link">Watch Debate</a>
+                        <button class="share-btn">📤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h3>Featured Playlists</h3>
+            <div class="playlist-item">
+                <div class="playlist-thumbnail">🎬</div>
+                <div class="playlist-info">
+                    <h4>America Party Origins</h4>
+                    <p>12 videos • 3.2M total views</p>
+                </div>
+            </div>
+            <div class="playlist-item">
+                <div class="playlist-thumbnail">🎙️</div>
+                <div class="playlist-info">
+                    <h4>Political Podcasts</h4>
+                    <p>28 episodes • Weekly updates</p>
+                </div>
+            </div>
+            <div class="playlist-item">
+                <div class="playlist-thumbnail">📺</div>
+                <div class="playlist-info">
+                    <h4>Expert Interviews</h4>
+                    <p>15 interviews • 1.8M total views</p>
+                </div>
+            </div>
+            <div class="playlist-item">
+                <div class="playlist-thumbnail">📊</div>
+                <div class="playlist-info">
+                    <h4>Data & Analysis</h4>
+                    <p>8 videos • Updated daily</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AmericaPartyNews Media Channel. All rights reserved.</p>
+            <p>Your trusted source for multimedia political coverage and analysis.</p>
+        </div>
+    </footer>
+</body>
+</html>
