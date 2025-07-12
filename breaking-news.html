@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Party News - Breaking News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .breaking-banner {
+            background: #dc2626;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .news-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .news-article {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-article:last-child {
+            border-bottom: none;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .article-excerpt {
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .read-more {
+            color: #dc2626;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .featured-story {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .featured-story h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .quick-facts {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .quick-facts-list {
+            padding: 20px;
+        }
+
+        .quick-facts-list ul {
+            list-style: none;
+        }
+
+        .quick-facts-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+        }
+
+        .quick-facts-list li:last-child {
+            border-bottom: none;
+        }
+
+        .timestamp {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🇺🇸 AMERICA PARTY NEWS</div>
+            <div class="tagline">Truth, Freedom, Prosperity</div>
+        </div>
+    </header>
+
+    <div class="breaking-banner">
+        🚨 BREAKING: Elon Musk Launches America Party After Trump Feud 🚨
+    </div>
+
+    <div class="main-content">
+        <div class="news-section">
+            <div class="section-header">
+                Latest Breaking News
+            </div>
+
+            <article class="news-article">
+                <h2 class="article-title">Elon Musk Officially Forms "America Party" After Dramatic Split with Trump</h2>
+                <div class="article-meta">
+                    <span class="timestamp">15 hours ago</span> • Major Political Development
+                </div>
+                <p class="article-excerpt">
+                    Billionaire Elon Musk has officially announced the formation of the "America Party" following a dramatic falling out with President Donald Trump over his domestic policy legislation. Musk declared the new party will "give back" Americans their freedom and challenge what he called the nation's "one-party system."
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+
+            <article class="news-article">
+                <h2 class="article-title">Trump-Musk Feud Escalates Over "Big Beautiful Bill" Spending Package</h2>
+                <div class="article-meta">
+                    <span class="timestamp">1 day ago</span> • Political Conflict
+                </div>
+                <p class="article-excerpt">
+                    The relationship between President Trump and Elon Musk has reached a breaking point as Musk criticized Trump's massive tax and spending bill, calling it a "disgusting abomination" that would burden Americans with "crushingly unsustainable debt."
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+
+            <article class="news-article">
+                <h2 class="article-title">Multiple "America Party" Entities Filed After Musk's Announcement</h2>
+                <div class="article-meta">
+                    <span class="timestamp">4 days ago</span> • Party Formation
+                </div>
+                <p class="article-excerpt">
+                    Federal Election Commission records show multiple political parties with variations of "America Party," "DOGE," or "X" in their names have been registered since Musk's Saturday announcement, indicating rapid movement to establish the new political entity.
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+
+            <article class="news-article">
+                <h2 class="article-title">Musk Targets 2-3 Senate Seats and 10 House Districts for America Party</h2>
+                <div class="article-meta">
+                    <span class="timestamp">5 days ago</span> • Electoral Strategy
+                </div>
+                <p class="article-excerpt">
+                    In strategic posts on X, Musk outlined his initial electoral ambitions for the America Party, suggesting the new party could focus on "just 2 or 3 Senate seats and 8 to 10 House districts" rather than attempting a full national campaign.
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+
+            <article class="news-article">
+                <h2 class="article-title">Musk Trolls Trump with Jeffrey Epstein Post Amid Ongoing Feud</h2>
+                <div class="article-meta">
+                    <span class="timestamp">3 days ago</span> • Social Media Drama
+                </div>
+                <p class="article-excerpt">
+                    Continuing their public dispute, Elon Musk posted controversial content about the Jeffrey Epstein case, questioning why no additional arrests have been made and appearing to target President Trump with the inflammatory social media post.
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+
+            <article class="news-article">
+                <h2 class="article-title">Analysis: Challenges Facing Musk's Third Party Ambitions</h2>
+                <div class="article-meta">
+                    <span class="timestamp">6 days ago</span> • Political Analysis
+                </div>
+                <p class="article-excerpt">
+                    Political experts weigh in on the significant hurdles facing Musk's America Party, from ballot access requirements to building a coherent ideological platform. The Washington Post identifies six major challenges the world's richest man will need to overcome.
+                </p>
+                <a href="#" class="read-more">Read Full Story →</a>
+            </article>
+        </div>
+
+        <aside class="sidebar">
+            <div class="featured-story">
+                <h3>🔥 Featured Story</h3>
+                <p>The Trump-Musk breakup appears complete as the billionaire launches his own political movement, potentially reshaping American politics.</p>
+            </div>
+
+            <div class="quick-facts">
+                <div class="section-header">
+                    Quick Facts
+                </div>
+                <div class="quick-facts-list">
+                    <ul>
+                        <li>💰 Musk's feud risks $100M in political donations to Trump organizations</li>
+                        <li>📊 Musk's net favorability hits record low in YouGov polling</li>
+                        <li>🏛️ Multiple America Party entities filed with FEC</li>
+                        <li>📈 Tesla stock affected by political tensions</li>
+                        <li>🎯 Initial focus on 2-3 Senate, 8-10 House seats</li>
+                        <li>💸 Dispute over "massive spending bill" sparked feud</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quick-facts">
+                <div class="section-header">
+                    Timeline
+                </div>
+                <div class="quick-facts-list">
+                    <ul>
+                        <li><strong>July 12:</strong> Musk coalition analysis published</li>
+                        <li><strong>July 11:</strong> Third party viability questioned</li>
+                        <li><strong>July 9:</strong> Epstein post controversy</li>
+                        <li><strong>July 8:</strong> Trump-Musk breakup "complete"</li>
+                        <li><strong>July 6:</strong> America Party officially announced</li>
+                        <li><strong>July 5:</strong> FEC filings begin appearing</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 America Party News. All rights reserved. | Truth • Freedom • Prosperity </p>
+    </footer>
+</body>
+</html>
