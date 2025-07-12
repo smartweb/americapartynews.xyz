@@ -1,1 +1,376 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Party Opinion Hub - Latest Analysis & Commentary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #dc2626 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-bar {
+            background-color: #1e40af;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #dc2626;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .article-source {
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .article-date {
+            background-color: #f3f4f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            line-height: 1.3;
+        }
+
+        .article-summary {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .article-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #1e40af, #dc2626);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .article-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #dc2626;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-content {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .sidebar-stats {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .article-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>America Party Opinion Hub</h1>
+            <p>Comprehensive analysis and commentary on the latest political developments</p>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#recent">Recent Articles</a>
+                <a href="#analysis">Analysis</a>
+                <a href="#commentary">Commentary</a>
+                <a href="#breaking">Breaking News</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">CNN Politics</span>
+                        <span class="article-date">1 day ago</span>
+                    </div>
+                    <h2 class="article-title">Musk's 'America Party' and the Evidence That Trump's Coalition Is Starting to Fracture</h2>
+                    <p class="article-summary">A detailed analysis of how President Trump's relationship with Elon Musk has deteriorated, with Trump now treating his former ally as an "off the rails" oddity. The article explores the implications of this split for the broader conservative coalition.</p>
+                    <a href="https://www.cnn.com/2025/07/11/politics/third-party-politics-trump-coalition-musk" class="article-link" target="_blank">Read Full Analysis →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">Fox News Opinion</span>
+                        <span class="article-date">2 days ago</span>
+                    </div>
+                    <h2 class="article-title">Why Elon Musk's America Party Is Failing at Effective Political Messaging</h2>
+                    <p class="article-summary">A veteran of Ross Perot's campaign examines the disconnect between Musk's tech-focused America Party messaging and the language needed to build a successful political movement. The piece offers insights from third-party political experience.</p>
+                    <a href="https://www.foxnews.com/opinion/i-worked-most-successful-third-party-decades-elon-musk-has-lot-learn-from" class="article-link" target="_blank">Read Opinion →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">The Washington Post</span>
+                        <span class="article-date">5 days ago</span>
+                    </div>
+                    <h2 class="article-title">Elon Musk's America Party: Supply Looking for Demand</h2>
+                    <p class="article-summary">An editorial examining whether Musk's America Party addresses a real political need or simply reflects personal ambition. The piece explores the challenges of building a third party when Americans say they want alternatives but don't vote that way.</p>
+                    <a href="https://www.washingtonpost.com/opinions/2025/07/07/elon-musk-america-party/" class="article-link" target="_blank">Read Editorial →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">Newsweek</span>
+                        <span class="article-date">1 day ago</span>
+                    </div>
+                    <h2 class="article-title">Elon Musk's New Political Party Could Be Major Blow to Republicans: Poll</h2>
+                    <p class="article-summary">New polling data suggests MAGA supporters could be drawn to Musk's views on government spending, technology, and trade. Political scientists analyze the potential impact on Republican electoral prospects in upcoming elections.</p>
+                    <a href="https://www.newsweek.com/elon-musk-america-party-republicans-poll-2097385" class="article-link" target="_blank">Read Poll Analysis →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">TIME</span>
+                        <span class="article-date">5 days ago</span>
+                    </div>
+                    <h2 class="article-title">Musk Announces New America Party Is Formed Amid Trump Split</h2>
+                    <p class="article-summary">Coverage of Musk's official announcement that "The America Party is formed to give you back your freedom," coming days after Trump debated deporting him. The article explores the personal and political motivations behind the split.</p>
+                    <a href="https://time.com/7300282/elon-musk-new-political-party-america-party-policies-trump-split/" class="article-link" target="_blank">Read Coverage →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">Axios</span>
+                        <span class="article-date">4 days ago</span>
+                    </div>
+                    <h2 class="article-title">Musk's America Party Has Helpers — and Challenges</h2>
+                    <p class="article-summary">An analysis of the support network and obstacles facing Musk's America Party as it aims to be a political disruptor in the 2026 midterms. The piece examines both the resources available and the structural challenges ahead.</p>
+                    <a href="https://www.axios.com/2025/07/08/elon-musk-america-party-helpers-challenges" class="article-link" target="_blank">Read Analysis →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">NPR</span>
+                        <span class="article-date">6 days ago</span>
+                    </div>
+                    <h2 class="article-title">Musk Forms New Party After Split with Trump Over Tax and Spending Bill</h2>
+                    <p class="article-summary">NPR's coverage of Musk carrying out his threat to form a new political party following his falling out with Trump over the president's sweeping tax cuts law. The report examines the policy disagreements that led to the split.</p>
+                    <a href="https://www.npr.org/2025/07/06/g-s1-76292/musk-political-party-america" class="article-link" target="_blank">Read Report →</a>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="article-source">The Washington Post</span>
+                        <span class="article-date">6 days ago</span>
+                    </div>
+                    <h2 class="article-title">6 of the Biggest Challenges Facing Musk's New Political Party</h2>
+                    <p class="article-summary">A comprehensive analysis of the major obstacles confronting Musk's America Party, from ballot access laws to fundraising challenges. The piece examines why turning a political idea into a meaningful movement is more difficult than it appears.</p>
+                    <a href="https://www.washingtonpost.com/politics/2025/07/05/msuk-america-party/" class="article-link" target="_blank">Read Analysis →</a>
+                </article>
+            </div>
+
+            <aside class="sidebar">
+                <h3>About America Party</h3>
+                <div class="sidebar-content">
+                    <p>The America Party is a proposed political party announced by Elon Musk on July 5, 2025, following a public feud with President Trump over legislative priorities.</p>
+                    
+                    <div class="sidebar-stats">
+                        <div class="stat-item">
+                            <span>Articles This Week:</span>
+                            <span>8</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Major Publications:</span>
+                            <span>6</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Opinion Pieces:</span>
+                            <span>3</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>News Reports:</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Key Topics</h3>
+                <div class="sidebar-content">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Trump-Musk Split</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Third Party Challenges</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">2026 Midterm Strategy</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Political Messaging</li>
+                        <li style="padding: 0.5rem 0;">Coalition Building</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 America Party Opinion Hub. All rights reserved.</p>
+            <p>Aggregating the latest analysis and commentary on American political developments.</p>
+        </div>
+    </footer>
+</body>
+</html>
