@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Party Letter Game</title>
+      <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3NF0G0FF79"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3NF0G0FF79');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2447732235899527"
+     crossorigin="anonymous"></script>
+  
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .word-display {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 30px 0;
+            letter-spacing: 0.3em;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 30px 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .letter-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .letter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .letter-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .letter-btn.correct {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .letter-btn.wrong {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .hangman-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+            line-height: 1.2;
+            margin: 20px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            color: #2c3e50;
+        }
+
+        .game-controls {
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .message.win {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+
+        .message.lose {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #4ecdc4;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .alphabet-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .game-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .word-display {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🇺🇸 America Party Letter Game 🇺🇸</h1>
+        <p>Test your knowledge of American words and phrases!</p>
+        <p>Guess the letters to reveal the hidden word</p>
+    </div>
+
+    <div class="game-container">
+        <div class="game-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="score">0</span>
+                <span class="stat-label">Score</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="level">1</span>
+                <span class="stat-label">Level</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="lives">6</span>
+                <span class="stat-label">Lives</span>
+            </div>
+        </div>
+
+        <div class="hangman-display" id="hangman">
+            <pre id="hangmanArt">
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+            </pre>
+        </div>
+
+        <div class="word-display" id="wordDisplay"></div>
+
+        <div class="alphabet-grid" id="alphabetGrid"></div>
+
+        <div class="game-controls">
+            <button class="btn" onclick="newGame()">New Game</button>
+            <button class="btn" onclick="getHint()">Hint</button>
+        </div>
+
+        <div class="message hidden" id="message"></div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 <a href="https://americapartynews.xyz">AmericaPartyNews.xyz</a> - Proudly American 🇺🇸</p>
+    </div>
+
+    <script>
+        const words = [
+            { word: "FREEDOM", hint: "The power to act, speak, or think without restraint" },
+            { word: "LIBERTY", hint: "The state of being free within society" },
+            { word: "DEMOCRACY", hint: "Government by the people" },
+            { word: "CONSTITUTION", hint: "The supreme law of the United States" },
+            { word: "INDEPENDENCE", hint: "Freedom from outside control" },
+            { word: "PATRIOT", hint: "A person who loves their country" },
+            { word: "AMERICA", hint: "Land of the free, home of the brave" },
+            { word: "JUSTICE", hint: "Fair treatment under the law" },
+            { word: "EQUALITY", hint: "The state of being equal" },
+            { word: "OPPORTUNITY", hint: "The American Dream is built on this" },
+            { word: "CONGRESS", hint: "The legislative branch of government" },
+            { word: "PRESIDENT", hint: "The chief executive of the nation" },
+            { word: "CITIZEN", hint: "A member of a political community" },
+            { word: "ELECTION", hint: "The process of choosing leaders" },
+            { word: "RIGHTS", hint: "What the Bill of Rights protects" },
+            { word: "PROSPERITY", hint: "Economic well-being and success" },
+            { word: "INNOVATION", hint: "America leads the world in this" },
+            { word: "UNITY", hint: "E pluribus unum - out of many, one" },
+            { word: "PROGRESS", hint: "Moving forward toward a better future" },
+            { word: "LEADERSHIP", hint: "America's role in the world" }
+        ];
+
+        let currentWord = {};
+        let guessedLetters = [];
+        let wrongGuesses = 0;
+        let score = 0;
+        let level = 1;
+        let maxWrongGuesses = 6;
+
+        const hangmanStages = [
+            `
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========`
+        ];
+
+        function initGame() {
+            createAlphabet();
+            newGame();
+        }
+
+        function createAlphabet() {
+            const alphabetGrid = document.getElementById('alphabetGrid');
+            alphabetGrid.innerHTML = '';
+            
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const btn = document.createElement('button');
+                btn.className = 'letter-btn';
+                btn.textContent = letter;
+                btn.onclick = () => guessLetter(letter);
+                btn.id = `btn-${letter}`;
+                alphabetGrid.appendChild(btn);
+            }
+        }
+
+        function newGame() {
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            guessedLetters = [];
+            wrongGuesses = 0;
+            
+            updateWordDisplay();
+            updateHangman();
+            resetAlphabet();
+            hideMessage();
+            updateStats();
+        }
+
+        function updateWordDisplay() {
+            const display = currentWord.word.split('').map(letter => 
+                guessedLetters.includes(letter) ? letter : '_'
+            ).join(' ');
+            document.getElementById('wordDisplay').textContent = display;
+        }
+
+        function updateHangman() {
+            document.getElementById('hangmanArt').textContent = hangmanStages[wrongGuesses];
+        }
+
+        function resetAlphabet() {
+            const buttons = document.querySelectorAll('.letter-btn');
+            buttons.forEach(btn => {
+                btn.disabled = false;
+                btn.className = 'letter-btn';
+            });
+        }
+
+        function guessLetter(letter) {
+            if (guessedLetters.includes(letter)) return;
+            
+            guessedLetters.push(letter);
+            const btn = document.getElementById(`btn-${letter}`);
+            btn.disabled = true;
+            
+            if (currentWord.word.includes(letter)) {
+                btn.classList.add('correct');
+                score += 10;
+                
+                if (currentWord.word.split('').every(l => guessedLetters.includes(l))) {
+                    setTimeout(() => {
+                        showMessage('🎉 Congratulations! You won!', 'win');
+                        score += 50;
+                        level++;
+                        updateStats();
+                        setTimeout(newGame, 2000);
+                    }, 500);
+                }
+            } else {
+                btn.classList.add('wrong');
+                wrongGuesses++;
+                updateHangman();
+                
+                if (wrongGuesses >= maxWrongGuesses) {
+                    setTimeout(() => {
+                        showMessage(`💀 Game Over! The word was: ${currentWord.word}`, 'lose');
+                        if (score > 0) score -= 20;
+                        updateStats();
+                        setTimeout(newGame, 3000);
+                    }, 500);
+                }
+            }
+            
+            updateWordDisplay();
+            updateStats();
+        }
+
+        function getHint() {
+            if (score >= 30) {
+                score -= 30;
+                showMessage(`💡 Hint: ${currentWord.hint}`, 'win');
+                updateStats();
+                setTimeout(hideMessage, 3000);
+            } else {
+                showMessage('⚠️ You need at least 30 points for a hint!', 'lose');
+                setTimeout(hideMessage, 2000);
+            }
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type}`;
+            message.classList.remove('hidden');
+        }
+
+        function hideMessage() {
+            document.getElementById('message').classList.add('hidden');
+        }
+
+        function updateStats() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('level').textContent = level;
+            document.getElementById('lives').textContent = maxWrongGuesses - wrongGuesses;
+        }
+
+        // Initialize game when page loads
+        window.onload = initGame;
+    </script>
+</body>
+</html>
